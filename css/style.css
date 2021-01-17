@@ -1,0 +1,24 @@
+.carousel-container {
+    width: 400px; 
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    margin: 50px auto;
+
+    
+}
+
+.carousel-image-wrapper {
+    position: absolute;
+    left: 0;
+    /* width: 1000px; */
+}
+
+
+.carousel-container img{
+    float: left;
+}
+
+.dots:hover {
+    background: #1da367 !important;
+}
