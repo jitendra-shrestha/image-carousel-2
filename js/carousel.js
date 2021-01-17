@@ -1,3 +1,9 @@
+  /**
+     * @param {String} sliderId             Id of slider.
+     * @param  {Number} transactionTime     Time taken  from one image to another image
+     * @param  {Number} holdTime            Time to hold on active image, if not given 1000 will be used.
+     * @param {boolean} autoplay            Signifies if slider must start playing by itself, default is set to true.
+     */
 
 class Carousel{
     constructor(
@@ -32,6 +38,9 @@ class Carousel{
         this.wrapper.style.width = this.no_of_images* this.imageWidth + 'px';
         this.dots_list = [];
     }
+     /**
+     *  add Previous button 
+     * */
 
     addPreviousButton() {
         this.btn_previous.setAttribute('class', 'btn-previous');
@@ -47,6 +56,10 @@ class Carousel{
         this.container.appendChild(this.btn_previous);
     }
 
+     /**
+     *  add Next button 
+     * */
+
     addNextButton() {
         this.btn_next.setAttribute('class', 'btn-next');
         this.btn_next.style.position = 'absolute';
@@ -61,6 +74,9 @@ class Carousel{
 
         this.container.appendChild(this.btn_next);
     }
+     /**
+     *  add dots indicator container
+     * */
 
     createDotsContainer() {
         this.dots_container.style.position = 'absolute';
@@ -71,6 +87,10 @@ class Carousel{
         this.container.appendChild(this.dots_container);
         this.createDots();
     }
+
+    /**
+     *  show dots
+     * */
 
     createDots(){
 
@@ -95,6 +115,10 @@ class Carousel{
           }
     }
 
+    /**
+     *  @params {number}    sets color for dots
+     * */
+
     setActiveDots(index){
         for(var i = 0; i< this.dots_list.length; i++){
           if(index === i){
@@ -104,24 +128,51 @@ class Carousel{
           }
         }
     }
+
+    /**
+     *  @params {number}  gets current index
+     *  @returns {number}  returns previous index
+     * */
+
     getPastIndex(cindex) {
   
         return (cindex - 1 + this.no_of_images) % this.no_of_images;
     }
     
+    /**
+     *  @params {number}  gets current index
+     *  @returns {number}  returns next index
+     * */
+
     getNextIndex(cindex) {
     
         return (cindex + 1) % this.no_of_images;
     }
+
+    /**
+     *  @params {number}  gets current index
+     *  @returns {number}  returns position from  index
+     * */
     
     getPosition(cindex) {
         return -(cindex * this.imageWidth);
     }
     
+    /**
+     *  @params {number}  gets next index
+     *   sets next index as current index
+     * */
+
     setIndex(nextIndex){
         this.currentIndex = nextIndex ;
         return
     }
+
+    /**
+     *  @params {number}  gets current index
+     *  @params {number}  gets next index
+     *   slides images to desired index
+     * */
 
     slideImage(currentIndex, nextIndex) {
 
@@ -160,6 +211,10 @@ class Carousel{
           }, 1000/this.FPS);
     }
 
+    /**
+     *   adds listeners to buttons
+     * */
+
     addListeners(){
         this.btn_previous.addEventListener('click',() =>{
             this.nextIndex = this.getPastIndex(this.currentIndex);
@@ -173,7 +228,9 @@ class Carousel{
     }
     
 
-
+    /**
+     *   loads all the widgets
+     * */
     createCarousel() {
         this.addPreviousButton();
         this.addNextButton();
